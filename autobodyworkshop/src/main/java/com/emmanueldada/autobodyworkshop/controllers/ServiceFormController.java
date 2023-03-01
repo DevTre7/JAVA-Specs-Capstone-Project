@@ -1,6 +1,6 @@
 package com.emmanueldada.autobodyworkshop.controllers;
 
-public class ServiceController {
+public class ServiceFormController {
 
 
 }

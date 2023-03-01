@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/notes")
+@RequestMapping("api/v1/vehicles")
 public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
@@ -44,6 +44,5 @@ public class VehicleController {
     public Optional<VehicleDto> getVehicleById(@PathVariable Long noteId){
         return vehicleService.getVehicleById(noteId);
     }
-
 
 }
