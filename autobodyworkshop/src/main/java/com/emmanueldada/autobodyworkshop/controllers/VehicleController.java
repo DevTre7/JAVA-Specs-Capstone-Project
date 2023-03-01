@@ -29,8 +29,8 @@ public class VehicleController {
 
     //Delete a Vehicle
     @DeleteMapping("/{VehicleId}")
-    public void deleteVehicleById(@PathVariable Long noteId){
-        vehicleService.deleteVehicleById(noteId);
+    public void deleteVehicleById(@PathVariable Long vehicleId){
+        vehicleService.deleteVehicleById(vehicleId);
     }
 
     //Update an existing Vehicle
@@ -41,8 +41,8 @@ public class VehicleController {
 
     //Get a Vehicle by the Vehicle's id
     @GetMapping("/{VehicleId}")
-    public Optional<VehicleDto> getVehicleById(@PathVariable Long noteId){
-        return vehicleService.getVehicleById(noteId);
+    public Optional<VehicleDto> getVehicleById(@PathVariable Long vehicleId){
+        return vehicleService.getVehicleById(vehicleId);
     }
 
 }

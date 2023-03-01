@@ -1,6 +1,5 @@
 package com.emmanueldada.autobodyworkshop.services;
 
-
 import com.emmanueldada.autobodyworkshop.dtos.ServiceFormDto;
 import com.emmanueldada.autobodyworkshop.entites.ServiceForm;
 import com.emmanueldada.autobodyworkshop.entites.User;
@@ -8,12 +7,11 @@ import com.emmanueldada.autobodyworkshop.repositories.ServiceFormRepository;
 import com.emmanueldada.autobodyworkshop.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
 public class ServiceFormServiceImpl implements ServiceFormService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -22,6 +20,7 @@ public class ServiceFormServiceImpl implements ServiceFormService {
 
 
     //CRUD Operations!!!
+
     @Override
     @Transactional
     public void addServiceForm(ServiceFormDto serviceFormDto, Long userId){
@@ -39,6 +38,7 @@ public class ServiceFormServiceImpl implements ServiceFormService {
         serviceFormOptional.ifPresent(serviceForm -> serviceFormRepository.delete(serviceForm));
     }
 
+
     @Override
     @Transactional
     public void updateServiceFormById(ServiceFormDto serviceFormDto){
@@ -55,10 +55,10 @@ public class ServiceFormServiceImpl implements ServiceFormService {
     @Override
     public Optional<ServiceFormDto> getServiceFormById(Long serviceFormId){
         Optional<ServiceForm> serviceFormOptional  = serviceFormRepository.findById(serviceFormId);
-            if(serviceFormOptional.isPresent()){
-                return Optional.of(new ServiceFormDto(serviceFormOptional.get()));
-            }
-            return  Optional.empty();
+        if(serviceFormOptional.isPresent()){
+            return Optional.of(new ServiceFormDto(serviceFormOptional.get()));
+        }
+        return  Optional.empty();
 
     }
 }
