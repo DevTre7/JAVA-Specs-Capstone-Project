@@ -43,6 +43,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Transactional
     public void deleteVehicleById(Long VehicleId) {
         Optional<Vehicle> noteOptional = vehicleRepository.findById(VehicleId);
+        System.out.println(noteOptional);
         noteOptional.ifPresent(vehicle -> vehicleRepository.delete(vehicle));
     }
 

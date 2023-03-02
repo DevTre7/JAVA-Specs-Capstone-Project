@@ -19,13 +19,7 @@ public class Vehicle {
     private Long id;
 
 
-    private String customer_name;
 
-    private String vehicle_type;
-
-    private String make;
-
-    private  String model;
 
     @Column(columnDefinition = "text")
     private String reason_for_repair;
@@ -35,21 +29,11 @@ public class Vehicle {
     private User user;
 
     public Vehicle(VehicleDto vehicleDto){
-        if (vehicleDto.getCustomer_name() != null){
-            this.customer_name = vehicleDto.getCustomer_name();
-        }
+
         if (vehicleDto.getId() != null){
             this.id = vehicleDto.getId();
         }
-        if (vehicleDto.getVehicle_type() != null){
-            this.vehicle_type = vehicleDto.getVehicle_type();
-        }
-        if (vehicleDto.getMake() != null){
-            this.make = vehicleDto.getMake();
-        }
-        if (vehicleDto.getModel() != null){
-            this.model = vehicleDto.getModel();
-        }
+
         if (vehicleDto.getReason_for_repair() != null){
             this.reason_for_repair = vehicleDto.getReason_for_repair();
         }

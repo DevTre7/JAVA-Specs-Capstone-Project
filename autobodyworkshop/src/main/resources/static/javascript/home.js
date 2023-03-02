@@ -4,8 +4,8 @@ const cookieArr = document.cookie.split("=")
 const userId = cookieArr[1];
 
 //DOM Elements
-const submitForm = document.getElementById("note-form")
-const noteContainer = document.getElementById("note-container")
+const submitForm = document.getElementById("vehicle-form")
+const noteContainer = document.getElementById("vehicle-container")
 
 //Modal Elements
 let noteBody = document.getElementById(`note-body`)
@@ -15,19 +15,19 @@ const headers = {
     'Content-Type': 'application/json'
 }
 
-const baseUrl = "http://localhost:8080/api/v1/notes/"
+const baseUrl = "http://localhost:8080/api/v1/"
 
 const handleSubmit = async (e) => {
     e.preventDefault()
     let bodyObj = {
-        body: document.getElementById("note-input").value
+        reason_for_repair: document.getElementById("vehicle-input").value
     }
     await addNote(bodyObj);
-    document.getElementById("note-input").value = ''
+    document.getElementById("vehicle-input").value = ''
 }
 
 async function addNote(obj) {
-    const response = await fetch(`${baseUrl}user/${userId}`, {
+    const response = await fetch(`${baseUrl}vehicles/user/${userId}`, {
         method: "POST",
         body: JSON.stringify(obj),
         headers: headers
@@ -39,7 +39,7 @@ async function addNote(obj) {
 }
 
 async function getNotes(userId) {
-    await fetch(`${baseUrl}user/${userId}`, {
+    await fetch(`${baseUrl}vehicles/user/${userId}`, {
         method: "GET",
         headers: headers
     })
@@ -49,7 +49,7 @@ async function getNotes(userId) {
 }
 
 async function handleDelete(noteId){
-    await fetch(baseUrl + noteId, {
+    await fetch(`${baseUrl}vehicles/${noteId}`, {
         method: "DELETE",
         headers: headers
     })
@@ -59,7 +59,7 @@ async function handleDelete(noteId){
 }
 
 async function getNoteById(noteId){
-    await fetch(baseUrl + noteId, {
+    await fetch(`${baseUrl}vehicles/${noteId}`, {
         method: "GET",
         headers: headers
     })
@@ -74,7 +74,7 @@ async function handleNoteEdit(noteId){
         body: noteBody.value
     }
 
-    await fetch(baseUrl, {
+    await fetch(`${baseUrl}vehicles`, {
         method: "PUT",
         body: JSON.stringify(bodyObj),
         headers: headers
@@ -92,7 +92,7 @@ const createNoteCards = (array) => {
         noteCard.innerHTML = `
             <div class="card d-flex" style="width: 18rem; height: 18rem;">
                 <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
-                    <p class="card-text">${obj.body}</p>
+                    <p class="card-text">${obj.reason_for_repair}</p>
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-danger" onclick="handleDelete(${obj.id})">Delete</button>
                         <button onclick="getNoteById(${obj.id})" type="button" class="btn btn-primary" 
